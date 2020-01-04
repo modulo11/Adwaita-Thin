@@ -9,7 +9,7 @@ ELEMENTS = ['min-height','min-width', 'margin', 'margin-top', 'margin-bottom', '
 def getScale(line):
     if 'radio' in line or 'slider' in line or 'scrollbar' in line:
         return NO_SCALE
-    elif line.startswith('placessidebar'):
+    elif line.startswith('switch') or line.startswith('placessidebar') or 'button.titlebutton' in line:
         return SMALL_SCALE
     else:
         return DEFAULT_SCALE
