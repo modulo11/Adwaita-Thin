@@ -2,7 +2,7 @@ import sys, re
 
 GTK_CSS_FILE = sys.argv[1]
 NO_SCALE = 1.0
-SMALL_SCALE = 0.8
+SMALL_SCALE = 0.7
 DEFAULT_SCALE = 0.5
 ELEMENTS = ['min-height','min-width', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'padding-left', 'padding-right', 'padding-top', 'padding-bottom']
 
