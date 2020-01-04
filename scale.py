@@ -1,4 +1,4 @@
-import sys, re
+import sys, re, math
 
 GTK_CSS_FILE = sys.argv[1]
 NO_SCALE = 1.0
@@ -18,9 +18,15 @@ with open(GTK_CSS_FILE, 'r') as f:
     for line in f:
         for element in ELEMENTS:
             if element in line:
-                match = re.match('(.*)' + element +': (\w+)px(.*)', line)
+                match = re.match('(.*)' + element +': (.*?);', line)
                 if match:
-                    pixel = int(match.group(2))
-                    scale = getScale(line)
-                    line = line.replace(element + ': ' + match.group(2), element + ': ' + str(int(pixel * scale)))
+                    rawValue = match.group(2)
+                    scaledValues = []
+                    values = rawValue.replace('px', '').split(' ')
+                    for value in values:
+                        pixel = int(value)
+                        scale = getScale(line)
+                        scaledValues.append(str(math.ceil(pixel * scale)))
+                    scaledValue = ' '.join([s + 'px' for s in scaledValues])
+                    line = line.replace(element + ': ' + rawValue, element + ': ' + scaledValue)
         print(line, end='')
