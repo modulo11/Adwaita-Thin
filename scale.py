@@ -6,11 +6,8 @@ SMALL_SCALE = 0.7
 DEFAULT_SCALE = 0.5
 ELEMENTS = ['min-height','min-width', 'margin', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'padding', 'padding-left', 'padding-right', 'padding-top', 'padding-bottom']
 
-def isLineIgnored(line):
-    return line.startswith('switch') or line.startswith('placessidebar') or 'radio' in line
-
 def getScale(line):
-    if line.startswith('switch') or 'radio' in line:
+    if 'radio' in line or 'slider' in line or 'scrollbar' in line:
         return NO_SCALE
     elif line.startswith('placessidebar'):
         return SMALL_SCALE
